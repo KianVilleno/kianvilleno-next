@@ -1,0 +1,3 @@
+const CODING_START_YEAR = 2011;
+
+export { CODING_START_YEAR };
