@@ -159,3 +159,7 @@ table {
 a {
   @apply hover:text-accent transition-opacity duration-200 underline underline-offset-3;
 }
+
+.text-copy {
+  font-size: 17px;
+}
