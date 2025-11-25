@@ -47,9 +47,13 @@ async function getAccessToken(): Promise<string | null> {
         grant_type: "refresh_token",
         refresh_token: refreshToken,
       }),
+      cache: "no-store",
     });
 
     if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      console.error("Token refresh failed:", response.status, errorData);
+      tokenCache = null;
       return null;
     }
 
@@ -62,7 +66,9 @@ async function getAccessToken(): Promise<string | null> {
     };
 
     return tokenCache.accessToken;
-  } catch {
+  } catch (error) {
+    console.error("Error getting access token:", error);
+    tokenCache = null;
     return null;
   }
 }
@@ -90,6 +96,33 @@ export async function getLastPlayedTrack(): Promise<{
     );
 
     if (!response.ok) {
+      if (response.status === 401) {
+        tokenCache = null;
+        const newToken = await getAccessToken();
+        if (newToken) {
+          const retryResponse = await fetch(
+            "https://api.spotify.com/v1/me/player/recently-played?limit=1",
+            {
+              headers: {
+                Authorization: `Bearer ${newToken}`,
+              },
+              next: { revalidate: 60 },
+            }
+          );
+          if (retryResponse.ok) {
+            const retryData: SpotifyResponse = await retryResponse.json();
+            if (retryData.items && retryData.items.length > 0) {
+              const track = retryData.items[0].track;
+              return {
+                name: track.name,
+                artist: track.artists[0]?.name || "Unknown Artist",
+                url: track.external_urls.spotify,
+              };
+            }
+          }
+        }
+      }
+      console.error("Response not ok", response.status);
       return null;
     }
 
@@ -105,7 +138,8 @@ export async function getLastPlayedTrack(): Promise<{
       artist: track.artists[0]?.name || "Unknown Artist",
       url: track.external_urls.spotify,
     };
-  } catch {
+  } catch (error) {
+    console.error("Error fetching track:", error);
     return null;
   }
 }

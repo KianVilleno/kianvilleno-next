@@ -1,8 +1,8 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 ::selection {
-  background-color: #47a3f3;
-  color: #fefefe;
+  background-color: var(--color-accent);
+  color: var(--color-black);
 }
 
 :root {
@@ -15,6 +15,12 @@
   --sh-jsxliterals: #6266d1;
   --sh-property: #e25a1c;
   --sh-entity: #e25a1c;
+}
+
+@theme {
+  --color-black: #191815;
+  --color-white: #f8f7f4;
+  --color-accent: #ffed66;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,6 +37,7 @@
 
 html {
   min-width: 360px;
+  font-family: var(--font-serif);
 }
 
 .prose .anchor {
@@ -53,7 +60,7 @@ html {
 
 .prose .anchor:after {
   @apply text-neutral-300 dark:text-neutral-700;
-  content: '#';
+  content: "#";
 }
 
 .prose *:hover > .anchor {
@@ -131,8 +138,8 @@ pre {
 }
 
 /* Remove Safari input shadow on mobile */
-input[type='text'],
-input[type='email'] {
+input[type="text"],
+input[type="email"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -147,4 +154,8 @@ table {
 
 .title {
   text-wrap: balance;
+}
+
+a {
+  @apply hover:text-accent transition-opacity duration-200 underline underline-offset-3;
 }
