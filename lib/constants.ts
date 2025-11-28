@@ -5,7 +5,7 @@ const CODING_START_YEAR = 2011;
 const WORK_PROJECTS: WorkProject[] = [
   {
     name: "SWOP",
-    url: "https://app.swop.net.au/",
+    url: "https://swop.net.au/",
   },
   {
     name: "Australian Traveller",
