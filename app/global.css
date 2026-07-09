@@ -21,6 +21,8 @@
   --color-black: #191815;
   --color-white: #f8f7f4;
   --color-accent: #ffed66;
+  --color-blue: #102da2;
+  --color-vermilion: #eb4424;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -37,7 +39,9 @@
 
 html {
   min-width: 360px;
-  font-family: var(--font-serif);
+  min-height: 100%;
+  background-color: var(--color-blue);
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 .prose .anchor {

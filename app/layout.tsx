@@ -1,5 +1,5 @@
 import "./global.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { STIX_Two_Text } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -33,6 +33,10 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#102da2",
+};
+
 const fontSans = STIX_Two_Text({
   subsets: ["latin"],
   variable: "--font-serif",
@@ -49,12 +53,12 @@ export default function RootLayout({
     <html
       lang="en"
       className={cx(
-        "text-black bg-white dark:text-white dark:bg-black",
+        "text-vermilion bg-blue",
         fontSans.variable
       )}
     >
       <body className="antialiased max-w-xl sm:mx-auto ">
-        <main className="flex-auto min-w-0 px-8 pt-16 lg:pt-20 flex flex-col md:px-0">
+        <main className="flex-auto min-w-0 px-4 pt-4 md:pt-16 flex flex-col md:px-4">
           {children}
           <Analytics />
           <SpeedInsights />
