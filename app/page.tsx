@@ -20,7 +20,7 @@ export default function Page() {
         >
           Standing By
         </a>
-        {`, living in Brisbane, Australia. Been coding for ${yearsCoding} years — I js make cool ahh shii.`}
+        {`, living in Bris, Australia. Been coding for ${yearsCoding} years. I js make cool ahh shii.`}
       </p>
     </section>
   );
