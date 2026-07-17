@@ -2,6 +2,10 @@ import { WorkProject } from "types";
 
 const CODING_START_YEAR = 2011;
 
+const BIRTH_YEAR = 2001;
+
+const STANDING_BY_URL = "https://www.standingby.company/";
+
 const WORK_PROJECTS: WorkProject[] = [
   {
     name: "SWOP",
@@ -41,4 +45,4 @@ const WORK_PROJECTS: WorkProject[] = [
   },
 ];
 
-export { CODING_START_YEAR, WORK_PROJECTS };
+export { BIRTH_YEAR, CODING_START_YEAR, STANDING_BY_URL, WORK_PROJECTS };
